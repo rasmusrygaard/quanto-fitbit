@@ -9,7 +9,7 @@ class OauthKeyController < ApplicationController
       token_secret: auth.oauth_token_secret
     })
     key.save!
-    render json: 'ok!'
+    render json: 'ok!', status: 200
   end
 
 end
