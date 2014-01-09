@@ -7,6 +7,9 @@ Fitbit::Application.routes.draw do
 
   resources :fitbit
 
+  get "/auth/:provider/callback" => "oauth_key#create"
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
