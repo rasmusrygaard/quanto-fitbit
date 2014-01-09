@@ -3,7 +3,7 @@ class OauthKeyController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
     puts auth
-    key = OathKey.create({
+    key = OauthKey.create({
       provider: auth.provider,
       uid: auth.uid,
       token: auth.oauth_token,
