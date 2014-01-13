@@ -40,8 +40,6 @@ GEM
     execjs (2.0.2)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
-    fitgem (0.8.0)
-      oauth
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -80,7 +78,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    omniauth-quanto (0.1.0)
+    omniauth-quanto (0.1.2)
       omniauth-oauth2 (~> 1.1)
     pg (0.17.1)
     polyglot (0.3.3)
@@ -144,10 +142,9 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
-  fitgem
   jbuilder (~> 1.2)
   omniauth-fitbit
-  omniauth-quanto
+  omniauth-quanto (~> 0.1.2)
   pg
   pry-rails
   rails (= 4.0.0)

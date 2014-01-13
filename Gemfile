@@ -31,10 +31,10 @@ group :development do
   gem 'pry-rails'
 end
 
-gem 'fitgem'
+# gem 'fitgem'
 gem 'omniauth-fitbit'
 
-gem 'omniauth-quanto'
+gem 'omniauth-quanto', '~> 0.1.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
