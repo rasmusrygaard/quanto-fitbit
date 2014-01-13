@@ -40,6 +40,8 @@ GEM
     execjs (2.0.2)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
+    fitgem (0.8.0)
+      oauth
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -142,6 +144,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  fitgem
   jbuilder (~> 1.2)
   omniauth-fitbit
   omniauth-quanto (~> 0.1.2)
