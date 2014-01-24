@@ -2,6 +2,7 @@ class OauthKeyController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
+    binding.pry
     puts '-------------------------------------------------------'
     puts auth.inspect
     puts '-------------------------------------------------------'
