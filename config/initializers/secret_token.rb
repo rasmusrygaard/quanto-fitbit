@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Fitbit::Application.config.secret_key_base = 'ca239670043a1b2fa7c76aef39e7c51dbe8a255792c1974fe6527b4513c454990991d53e5e3b0c90ccaddcf1ff35b69900467b00a25f938062030c9f09c7e45a'
+Fitbit::Application.config.secret_key_base = ENV["SECRET_KEY"]
