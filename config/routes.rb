@@ -1,4 +1,6 @@
 Fitbit::Application.routes.draw do
+  get "fitbit_key/create"
+  get "quanto_key/create"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,7 +9,9 @@ Fitbit::Application.routes.draw do
 
   resources :fitbit
 
-  get "/auth/:provider/callback" => "oauth_key#create"
+  get "/auth/quanto/:provider/callback" => "quanto_key#create"
+
+  get "/auth/fitbit/callback" => "fitbit_key#create"
 
 
   # Example of regular route:

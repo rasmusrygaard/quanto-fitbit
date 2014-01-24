@@ -35,6 +35,7 @@ gem 'fitgem'
 gem 'omniauth-fitbit'
 
 gem 'omniauth-quanto', '~> 0.1.2'
+gem 'quanto-ruby', '~> 0.0.5'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
