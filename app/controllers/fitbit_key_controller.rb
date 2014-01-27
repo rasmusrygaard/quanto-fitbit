@@ -5,8 +5,11 @@
       provider: auth.provider,
       uid: auth.uid,
       token: auth.credentials.token,
+      plugin: 'fitbit',
     })
     key.save!
-    redirect_to 'http://quanto.herokuapp.com/plugins/1'
+
+    quanto_plugin_id = OauthKey.where(provider: quanto, plugin: 'fitbit').pluck(:uid).last
+    redirect_to "http://quanto.herokuapp.com/plugins/#{quanto_plugin_id}"
   end
 end

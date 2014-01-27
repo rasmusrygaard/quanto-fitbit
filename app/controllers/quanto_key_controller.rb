@@ -9,6 +9,7 @@ class QuantoKeyController < ApplicationController
       provider: auth.provider,
       uid: auth.uid,
       token: auth.credentials.token,
+      plugin: params[:provider],
     })
     key.save!
 
