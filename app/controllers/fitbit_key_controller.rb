@@ -5,7 +5,7 @@
       provider: auth.provider,
       uid: auth.uid,
       token: auth.credentials.token,
-      token_secret: auth.credentials.token_secret,
+      token_secret: auth.credentials.secret,
       plugin: 'fitbit',
     })
     key.save!
