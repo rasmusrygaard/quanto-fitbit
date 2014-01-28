@@ -1,10 +1,10 @@
 class FitbitController < ApplicationController
 
   def index
-    oauth_key = OauthKey.last
+    oauth_key = OauthKey.where(provider: 'fitbit').last
     options = {
-      consumer_key: 'c42a6a7099f54e0ab9146fa355604a14',
-      consumer_secret: '01371805cee6429da70c5dab1f3d1705',
+      consumer_key: ENV["FITBIT_KEY"],
+      consumer_secret: ENV["FITBIT_SECRET"],
       token: oauth_key.token,
       secret: oauth_key.token_secret,
     }
