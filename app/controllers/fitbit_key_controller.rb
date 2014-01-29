@@ -10,7 +10,8 @@
     })
     key.save!
 
-    quanto_plugin_id = OauthKey.where(provider: 'quanto', plugin: 'fitbit').pluck(:uid).last
-    redirect_to "http://quanto.herokuapp.com/applications/#{quanto_plugin_id}/plugin"
+    quanto_key = OauthKey.where(provider: 'quanto', plugin: 'fitbit').last
+    client = Quanto::Client.new(ENV["QUANTO_KEY"], ENV["QUANTO_SECRET"], access_token: quanto_key.token)
+    redirect_to client.plugin_url
   end
 end
