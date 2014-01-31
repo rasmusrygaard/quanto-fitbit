@@ -15,4 +15,9 @@ class FitbitController < ApplicationController
     render json: activity
   end
 
+  def show
+    HardWorker.perform_async('bob', 10)
+    render json: 'abc'
+  end
+
 end
