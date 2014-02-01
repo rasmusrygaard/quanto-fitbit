@@ -1,4 +1,6 @@
-  class FitbitKeyController < ApplicationController
+require 'quanto'
+
+class FitbitKeyController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
     key = OauthKey.create({
