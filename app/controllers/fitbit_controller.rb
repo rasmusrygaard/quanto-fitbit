@@ -24,9 +24,9 @@ class FitbitController < ApplicationController
     Mapping.find_each do |mapping|
       fitbit_options = {
         consumer_key: ENV["FITBIT_KEY"],
-		consumer_secret: ENV["FITBIT_SECRET"],
-		token: mapping.fitbit_token,
-		secret: mapping.fitbit_token_secret,
+        consumer_secret: ENV["FITBIT_SECRET"],
+        token: mapping.fitbit_token,
+        secret: mapping.fitbit_token_secret,
       }
       fitbit_client = Fitgem::Client.new(options);
       range_options = { base_date: 1.days.ago, period: 'today' }
@@ -41,7 +41,7 @@ class FitbitController < ApplicationController
       quanto_client = Quanto::Client.new(options);
       quanto_client.record_metric(steps[:"activities-log-steps"][0][:value], 'steps');
       quanto_client.record_metric(sleep[:"sleep-minutesAsleep"][0][:value]/60.0, 'sleep'); #in hours
-	end	
+    end	
   end
 
 end
