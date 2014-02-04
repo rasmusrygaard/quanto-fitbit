@@ -6,11 +6,10 @@ class ManualInputController < ApplicationController
   respond_to :json
 
   def create
-    puts params
     post_options = {
       date: params[:date],
     }
-    quanto_key = OauthKey.quanto.where(uid: params[:user_id]).first
+    quanto_key = OauthKey.quanto.where(uid: params[:user_id].to_s).first
 
     if quanto_key.nil?
       render json: "key not found", status: 422
