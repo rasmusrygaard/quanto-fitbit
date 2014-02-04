@@ -9,7 +9,7 @@ class ManualInputController < ApplicationController
     post_options = {
       date: params[:date],
     }
-    quanto_key = OauthKey.quanto.where(uid: params[:user_id].to_s).first
+    quanto_key = OauthKey.quanto.where(uid: params[:user_id].to_s).last
 
     if quanto_key.nil?
       render json: "key not found", status: 422
