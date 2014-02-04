@@ -22,7 +22,7 @@ class FitbitController < ApplicationController
   
   def poll
     Mapping.find_each do |mapping|
-	  fitbit_options = {
+      fitbit_options = {
         consumer_key: ENV["FITBIT_KEY"],
 		consumer_secret: ENV["FITBIT_SECRET"],
 		token: mapping.fitbit_token,
