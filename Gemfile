@@ -41,14 +41,4 @@ gem 'omniauth-fitbit'
 gem 'omniauth-quanto', '~> 0.1.2'
 gem 'quanto-ruby', '~> 0.0.7'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'newrelic_rpm'
