@@ -13,6 +13,9 @@ class QuantoKeyController < ApplicationController
     })
     key.save!
 
+    mapping = Mapping.create!(quanto_key: key)
+    session[:quanto_key_id] = key.id
+
     case params[:provider].to_sym
     when :fitbit
       redirect_to '/auth/fitbit'

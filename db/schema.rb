@@ -11,15 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129013906) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140205014033) do
 
   create_table "mappings", force: true do |t|
-    t.string   "fitbit_token"
-    t.string   "fitbit_token_secret"
-	t.string   "quanto_access_token"
+    t.integer  "quanto_key_id"
+    t.integer  "api_key_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140129013906) do
     t.string   "token"
     t.string   "token_secret"
     t.string   "plugin"
+    t.integer  "mapping_id"
   end
 
   create_table "users", force: true do |t|
