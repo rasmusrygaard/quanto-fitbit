@@ -12,7 +12,9 @@ class QuantoKeyController < ApplicationController
       plugin: params[:provider],
     })
     key.save!
-    session[:quanto_user_id] = auth.uid
+
+    mapping = Mapping.create!(quanto_key: key)
+    session[:quanto_key_id] = key.id
 
     case params[:provider].to_sym
     when :fitbit
