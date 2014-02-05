@@ -4,7 +4,6 @@ class QuantoKeyController < ApplicationController
   # party provider. For instance, the callback for the Fitbit plugin should be
   # /auth/quanto_fitbit/callback. We can use this string to detect which plugin was authorized.
   def create
-    session[:foo] = 'BAAAAAAAAAAAAAAAAAAAAR'
     auth = request.env["omniauth.auth"]
     key = OauthKey.create({
       provider: auth.provider,
@@ -13,6 +12,7 @@ class QuantoKeyController < ApplicationController
       plugin: params[:provider],
     })
     key.save!
+    session[:quanto_user_id] = auth.uid
 
     case params[:provider].to_sym
     when :fitbit
