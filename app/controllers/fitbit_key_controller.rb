@@ -13,7 +13,7 @@ class FitbitKeyController < ApplicationController
     key.save!
 
     # Store the mapping between different types of keys.
-    mapping = Mapping.where(quanto_key_id: session[:quanto_key_id])
+    mapping = Mapping.where(quanto_key_id: session[:quanto_key_id]).last
     mapping.api_key = key
     mapping.save!
     session.delete(:quanto_key_id)
