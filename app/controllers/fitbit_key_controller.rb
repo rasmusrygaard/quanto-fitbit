@@ -2,6 +2,7 @@ require 'quanto'
 
 class FitbitKeyController < ApplicationController
   def create
+    puts 'session', session[:foo].inspect
     auth = request.env["omniauth.auth"]
     key = OauthKey.create({
       provider: auth.provider,
