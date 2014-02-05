@@ -19,29 +19,31 @@ class FitbitController < ApplicationController
     HardWorker.perform_async('bob', 10)
     render json: 'abc'
   end
-  
+
   def poll
     Mapping.find_each do |mapping|
+      next if mapping.quanto_key.nil? || mapping.api_key.nil?
+
       fitbit_options = {
         consumer_key: ENV["FITBIT_KEY"],
         consumer_secret: ENV["FITBIT_SECRET"],
-        token: mapping.fitbit_token,
-        secret: mapping.fitbit_token_secret,
+        token: mapping.api_key.token,
+        secret: mapping.api_key.token_secret,
       }
-      fitbit_client = Fitgem::Client.new(options);
+      fitbit_client = Fitgem::Client.new(fitbit_options);
       range_options = { base_date: 1.days.ago, period: 'today' }
       steps = client.data_by_time_range('/activities/log/steps', range_options)
       sleep = client.data_by_time_range('/sleep/minutesAsleep', range_options)
-		
+
       quanto_options = {
         consumer_key: ENV["QUANTO_KEY"],
         consumer_secret: ENV["QUANTO_SECRET"],
-        access_token: mapping.quanto_access_token
+        access_token: mapping.quanto_key
       }
-      quanto_client = Quanto::Client.new(options);
+      quanto_client = Quanto::Client.new(quanto_options);
       quanto_client.record_metric(steps[:"activities-log-steps"][0][:value], 'steps');
       quanto_client.record_metric(sleep[:"sleep-minutesAsleep"][0][:value]/60.0, 'sleep'); #in hours
-    end	
+    end
   end
 
 end
