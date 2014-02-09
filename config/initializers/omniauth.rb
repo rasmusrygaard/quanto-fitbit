@@ -1,7 +1,7 @@
-puts ENV["LASTFM_KEY"], ENV["LASTFM_SECRET"]
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :fitbit, ENV["FITBIT_KEY"], ENV["FITBIT_SECRET"]
   provider :lastfm, ENV["LASTFM_KEY"], ENV["LASTFM_SECRET"]
+
   # Register all keys for quanto
   [:fitbit, :lastfm].each do |provider_name|
     provider(:quanto, ENV["QUANTO_#{provider_name.upcase}_KEY"], ENV["QUANTO_#{provider_name.upcase}_SECRET"],
