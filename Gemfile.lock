@@ -79,6 +79,9 @@ GEM
     omniauth-fitbit (1.0.2)
       multi_xml
       omniauth-oauth (~> 1.0)
+    omniauth-lastfm (0.0.5)
+      omniauth-oauth (~> 1.0)
+      rest-client (~> 1.6.6)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -121,6 +124,8 @@ GEM
     redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     sass (3.2.13)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -171,6 +176,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   newrelic_rpm
   omniauth-fitbit
+  omniauth-lastfm (~> 0.0.5)
   omniauth-quanto (~> 0.1.2)
   pg
   pry-rails
