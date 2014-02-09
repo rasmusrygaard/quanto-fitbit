@@ -1,5 +1,8 @@
 class Mapping < ActiveRecord::Base
 
+  scope :lastfm, -> { where(provider: :lastfm) }
+  scope :fitbit, -> { where(provider: :fitbit) }
+
   belongs_to :quanto_key, class_name: 'OauthKey'
   belongs_to :api_key, class_name: 'OauthKey'
 
@@ -10,6 +13,7 @@ class Mapping < ActiveRecord::Base
   def self.create_mapping_for_key(api_key, session)
     mapping = Mapping.where(quanto_key_id: session[:quanto_key_id]).last
     mapping.api_key = api_key
+    mapping.provider = api_key.provider
     mapping.save!
     session.delete(:quanto_key_id)
     mapping.quanto_key
