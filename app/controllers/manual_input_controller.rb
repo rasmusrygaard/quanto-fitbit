@@ -16,8 +16,8 @@ class ManualInputController < ApplicationController
       return
     end
 
-    client = Quanto::Client.new(ENV["QUANTO_KEY"], ENV["QUANTO_SECRET"], access_token: quanto_key.token)
-    client.record_metric(params[:value], params[:metric_type], post_options)
+    client = Quanto::Client.new(ENV["QUANTO_MANUAL_KEY"], ENV["QUANTO_MANUAL_SECRET"], access_token: quanto_key.token)
+    client.record_entry(params[:value], params[:metric_type], post_options)
     render json: "OK", status: 200
   end
 

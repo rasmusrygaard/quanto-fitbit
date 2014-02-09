@@ -19,6 +19,8 @@ class QuantoKeyController < ApplicationController
     case params[:provider].to_sym
     when :fitbit
       redirect_to '/auth/fitbit'
+    when :lastfm
+      redirect_to '/auth/lastfm'
     end
   end
 

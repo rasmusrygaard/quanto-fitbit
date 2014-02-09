@@ -39,7 +39,12 @@ gem 'fitgem'
 gem 'omniauth-fitbit'
 
 gem 'omniauth-quanto', '~> 0.1.2'
+gem 'omniauth-lastfm', '~> 0.0.5'
+
+gem 'lastfm', '~> 1.23.0'
 
 gem 'quanto-ruby', '~> 0.0.9'
+
+gem 'whenever', :require => false
 
 gem 'newrelic_rpm'
