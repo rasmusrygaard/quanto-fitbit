@@ -45,4 +45,6 @@ gem 'lastfm', '~> 1.23.0'
 
 gem 'quanto-ruby', '~> 0.0.9'
 
+gem 'whenever', :require => false
+
 gem 'newrelic_rpm'

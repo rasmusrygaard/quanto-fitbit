@@ -14,4 +14,9 @@ class LastfmWorker
                                 access_token: quanto_key.token)
     quanto_client.record_entry(recent_tracks.count, :tracks)
   end
+
+  def self.record_all
+    Mapping.lastfm.find_each { |mapping| LastfmWorker.perform_async(mapping.id) }
+  end
+
 end
