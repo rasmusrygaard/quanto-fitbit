@@ -9,10 +9,12 @@ class LastfmWorker
     start_time = Date.today.beginning_of_day.to_i
     recent_tracks = lastfm.user.get_recent_tracks(user: lastfm_key.uid, from: start_time, limit: 200)
 
+    track_count = recent_tracks.present? ? recent_tracks.count : 0
+
     quanto_key = mapping.quanto_key
     quanto_client = Quanto::Client.new(ENV["QUANTO_LASTFM_KEY"], ENV["QUANTO_LASTFM_SECRET"],
                                 access_token: quanto_key.token)
-    quanto_client.record_entry(recent_tracks.count, :tracks)
+    quanto_client.record_entry(track_count, :tracks)
   end
 
   def self.record_all
