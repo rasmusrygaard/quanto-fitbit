@@ -9,13 +9,14 @@ class ManualInputController < ApplicationController
     post_options = {
       date: params[:date],
     }
-    quanto_key = OauthKey.quanto.where(uid: params[:user_id].to_s).last
+    mapping = Mapping.manual.last
 
-    if quanto_key.nil?
+    if mapping.nil?
       render json: "key not found", status: 422
       return
     end
 
+    quanto_key = mapping.quanto_key
     client = Quanto::Client.new(ENV["QUANTO_MANUAL_KEY"], ENV["QUANTO_MANUAL_SECRET"], access_token: quanto_key.token)
     client.record_entry(params[:value], params[:metric_type], post_options)
     render json: "OK", status: 200
