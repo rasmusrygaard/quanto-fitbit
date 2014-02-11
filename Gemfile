@@ -41,6 +41,7 @@ gem 'omniauth-fitbit'
 gem 'omniauth-quanto', '~> 0.1.2'
 gem 'omniauth-lastfm', '~> 0.0.5'
 gem 'omniauth-instagram', '~> 1.0.1'
+gem 'omniauth-facebook', '~> 1.6.0'
 
 gem 'lastfm', '~> 1.23.0'
 
@@ -51,3 +52,5 @@ gem 'quanto-ruby', '~> 0.0.9'
 gem 'whenever', :require => false
 
 gem 'newrelic_rpm'
+
+gem 'koala', '~> 1.8.0rc1'

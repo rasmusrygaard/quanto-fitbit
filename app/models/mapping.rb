@@ -3,6 +3,7 @@ class Mapping < ActiveRecord::Base
   scope :lastfm, -> { where(provider: :lastfm) }
   scope :fitbit, -> { where(provider: :fitbit) }
   scope :instagram, -> { where(provider: :instagram) }
+  scope :facebook, -> { where(provider: :facebook) }
 
   belongs_to :quanto_key, class_name: 'OauthKey'
   belongs_to :api_key, class_name: 'OauthKey'

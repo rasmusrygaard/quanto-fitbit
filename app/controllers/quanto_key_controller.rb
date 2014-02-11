@@ -23,6 +23,8 @@ class QuantoKeyController < ApplicationController
       redirect_to '/auth/lastfm'
     when :instagram
       redirect_to '/auth/instagram'
+    when :facebook
+      redirect_to '/auth/facebook'
     end
   end
 

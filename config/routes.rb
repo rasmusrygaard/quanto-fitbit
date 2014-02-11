@@ -7,6 +7,7 @@ Fitbit::Application.routes.draw do
   get "/auth/fitbit/callback" => "fitbit_key#create"
   get "/auth/lastfm/callback" => "lastfm_key#create"
   get "/auth/instagram/callback" => "instagram_key#create"
+  get "/auth/facebook/callback" => "facebook_key#create"
 
   # Plugin POST endpoints. Allow POST /manual for instance
   resources :manual_input, only: [:create]
