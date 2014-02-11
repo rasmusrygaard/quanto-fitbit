@@ -21,8 +21,8 @@ class FitbitWorker
     begin
       quanto_client = Quanto::Client.new(ENV["QUANTO_FITBIT_KEY"], ENV["QUANTO_FITBIT_SECRET"],
                                          access_token: mapping.quanto_key.token)
-      quanto_client.record_metric(steps["activities-log-steps"][0]['value'], :steps)
-      quanto_client.record_metric(sleep["sleep-minutesAsleep"][0]['value'], :sleep)
+      quanto_client.record_entry(steps["activities-log-steps"][0]['value'], :steps)
+      quanto_client.record_entry(sleep["sleep-minutesAsleep"][0]['value'], :sleep)
     rescue OAuth2::Error => e
       NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'fitbit')
       maping.invalidate!
