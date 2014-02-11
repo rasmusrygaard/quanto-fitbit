@@ -6,16 +6,18 @@ class ManualInputController < ApplicationController
   respond_to :json
 
   def create
+    puts params
     post_options = {
       date: params[:date],
     }
+
     mapping = Mapping.manual.last
 
     if mapping.nil?
       render json: "key not found", status: 422
       return
     end
-
+    puts 'ehllo'
     quanto_key = mapping.quanto_key
     client = Quanto::Client.new(ENV["QUANTO_MANUAL_KEY"], ENV["QUANTO_MANUAL_SECRET"], access_token: quanto_key.token)
     client.record_entry(params[:value], params[:metric_type], post_options)
