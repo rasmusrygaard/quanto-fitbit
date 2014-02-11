@@ -6,10 +6,10 @@ class FacebookWorker
  
     graph = Koala::Facebook::API.new(mapping.api_key.token)
     statuses = graph.get_connections("me", "statuses")
-    puts statuses.to_s	
+
     statuses_count = 0
     likes_count = 0
-    statuses[:data].each do |status|
+    statuses.each do |status|
       if(Date.parse(status[:updated_time]) === Date.today)
         statuses++
         if(status[:likes].present?)
