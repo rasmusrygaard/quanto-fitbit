@@ -35,7 +35,7 @@ group :development do
   gem 'pry-rails'
 end
 
-gem 'fitgem'
+gem 'fitgem', '~> 0.9.0'
 gem 'omniauth-fitbit'
 
 gem 'omniauth-quanto', '~> 0.1.2'
