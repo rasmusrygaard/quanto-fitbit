@@ -1,9 +1,10 @@
 class Mapping < ActiveRecord::Base
 
   scope :instagram, -> { where(provider: :instagram).valid }
-  scope :facebook, -> { where(provider: :facebook) }
+  scope :facebook, -> { where(provider: :facebook).valid }
   scope :fitbit, -> { where(provider: :fitbit).valid }
   scope :lastfm, -> { where(provider: :lastfm).valid }
+  scope :manual, -> { where(provider: :manual).valid }
   scope :valid, -> { where(revoked: false) }
 
   belongs_to :quanto_key, class_name: 'OauthKey'
