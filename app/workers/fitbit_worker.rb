@@ -3,7 +3,7 @@ class FitbitWorker
   include Sidekiq::Worker
 
   def perform(mapping_id)
-    mapping = Maping.find(mapping_id)
+    mapping = Mapping.find(mapping_id)
     return if mapping.quanto_key.nil? || mapping.api_key.nil?
 
     fitbit_options = {
