@@ -40,8 +40,11 @@ gem 'omniauth-fitbit'
 
 gem 'omniauth-quanto', '~> 0.1.2'
 gem 'omniauth-lastfm', '~> 0.0.5'
+gem 'omniauth-instagram', '~> 1.0.1'
 
 gem 'lastfm', '~> 1.23.0'
+
+gem 'instagram', '~> 0.10.0'
 
 gem 'quanto-ruby', '~> 0.0.9'
 
