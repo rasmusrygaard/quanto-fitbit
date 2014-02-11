@@ -1,9 +1,10 @@
 class Mapping < ActiveRecord::Base
 
-  scope :lastfm, -> { where(provider: :lastfm) }
-  scope :fitbit, -> { where(provider: :fitbit) }
-  scope :instagram, -> { where(provider: :instagram) }
+  scope :instagram, -> { where(provider: :instagram).valid }
   scope :facebook, -> { where(provider: :facebook) }
+  scope :fitbit, -> { where(provider: :fitbit).valid }
+  scope :lastfm, -> { where(provider: :lastfm).valid }
+  scope :valid, -> { where(revoked: false) }
 
   belongs_to :quanto_key, class_name: 'OauthKey'
   belongs_to :api_key, class_name: 'OauthKey'
@@ -19,6 +20,15 @@ class Mapping < ActiveRecord::Base
     mapping.save!
     session.delete(:quanto_key_id)
     mapping.quanto_key
+  end
+
+  def invalidate!
+    self.revoked = true
+    save!
+  end
+
+  def invalid?
+    self.revoked
   end
 
 end

@@ -11,10 +11,16 @@ class LastfmWorker
 
     track_count = recent_tracks.present? ? recent_tracks.count : 0
 
+
     quanto_key = mapping.quanto_key
-    quanto_client = Quanto::Client.new(ENV["QUANTO_LASTFM_KEY"], ENV["QUANTO_LASTFM_SECRET"],
-                                access_token: quanto_key.token)
-    quanto_client.record_entry(track_count, :tracks)
+    begin
+      quanto_client = Quanto::Client.new(ENV["QUANTO_LASTFM_KEY"], ENV["QUANTO_LASTFM_SECRET"],
+                                         access_token: quanto_key.token)
+      quanto_client.record_entry(track_count, :tracks)
+    rescue OAuth2::Error => e
+      NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'lastfm')
+      maping.invalidate!
+    end
   end
 
   def self.record_all
