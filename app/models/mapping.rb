@@ -1,5 +1,6 @@
 class Mapping < ActiveRecord::Base
 
+  scope :twitter, -> { where(provider: :twitter).valid }
   scope :instagram, -> { where(provider: :instagram).valid }
   scope :facebook, -> { where(provider: :facebook).valid }
   scope :fitbit, -> { where(provider: :fitbit).valid }
