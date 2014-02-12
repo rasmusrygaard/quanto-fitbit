@@ -5,10 +5,10 @@ class TwitterWorker
     mapping = Mapping.find(mapping_id)
  
     client = Twitter::REST::Client.new do |config|
-      config.consumer_key: ENV["TWITTER_KEY"],
-      config.consumer_secret: ENV["TWITTER_SECRET"],
-      config.access_token: mapping.api_key.token,
-      config.access_token_secret: mapping.api_key.token_secret,
+      config.consumer_key = ENV["TWITTER_KEY"]
+      config.consumer_secret = ENV["TWITTER_SECRET"]
+      config.access_token = mapping.api_key.token
+      config.access_token_secret = mapping.api_key.token_secret
     end
 	
     tweets = client.user_timeline(client.verify_credentials[:screen_name])
