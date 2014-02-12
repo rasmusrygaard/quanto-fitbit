@@ -42,6 +42,7 @@ gem 'omniauth-quanto', '~> 0.1.2'
 gem 'omniauth-lastfm', '~> 0.0.5'
 gem 'omniauth-instagram', '~> 1.0.1'
 gem 'omniauth-facebook', '~> 1.6.0'
+gem 'omniauth-twitter', '~> 1.0.1'
 
 gem 'lastfm', '~> 1.23.0'
 
