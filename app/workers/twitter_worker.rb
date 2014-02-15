@@ -16,7 +16,7 @@ class TwitterWorker
     tweets = client.user_timeline(client.verify_credentials[:screen_name])
     
     tweets.each do |tweet|
-      if(Date.parse(tweet.created_at.to_s) === Date.today)
+      if Date.parse(tweet.created_at.to_s) === Date.today
         count++
       end
     end
