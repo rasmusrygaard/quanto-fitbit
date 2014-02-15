@@ -54,4 +54,6 @@ gem 'whenever', :require => false
 
 gem 'newrelic_rpm'
 
-gem 'koala', '~> 1.8.0rc1'
+gem 'koala', '~> 1.9.0'
+
+gem 'twitter', '~> 5.5.1'
