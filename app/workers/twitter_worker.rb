@@ -17,7 +17,7 @@ class TwitterWorker
     
     tweets.each do |tweet|
       if Date.parse(tweet.created_at.to_s) === Date.today
-        count++
+        count+=1
       end
     end
 
