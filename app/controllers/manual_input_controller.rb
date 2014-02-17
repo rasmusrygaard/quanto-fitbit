@@ -14,7 +14,7 @@ class ManualInputController < ApplicationController
       client = Quanto::Client.new(ENV["QUANTO_MANUAL_KEY"], ENV["QUANTO_MANUAL_SECRET"], access_token: params[:access_token])
       client.record_entry(params[:value], params[:metric_type], post_options)
       render json: "OK", status: 200
-    rescue OAuth2::Error => 2
+    rescue OAuth2::Error => e
       render json: "error", status: 401
     end
   end
