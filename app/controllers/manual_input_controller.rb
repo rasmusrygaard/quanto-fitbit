@@ -10,17 +10,23 @@ class ManualInputController < ApplicationController
       date: params[:date],
     }
 
-    mapping = Mapping.manual.last
-
-    if mapping.nil?
-      render json: "key not found", status: 422
-      return
+    begin
+      client = Quanto::Client.new(ENV["QUANTO_MANUAL_KEY"], ENV["QUANTO_MANUAL_SECRET"], access_token: params[:access_token])
+      client.record_entry(params[:value], params[:metric_type], post_options)
+      render json: "OK", status: 200
+    rescue OAuth2::Error => 2
+      render json: "error", status: 401
     end
+  end
 
-    quanto_key = mapping.quanto_key
-    client = Quanto::Client.new(ENV["QUANTO_MANUAL_KEY"], ENV["QUANTO_MANUAL_SECRET"], access_token: quanto_key.token)
-    client.record_entry(params[:value], params[:metric_type], post_options)
-    render json: "OK", status: 200
+  def authenticate
+    client = OAuth2::Client.new(ENV["QUANTO_MANUAL_KEY"], ENV["QUANTO_MANUAL_SECRET"], site: 'http://quanto.herokuapp.com')
+    begin
+      token = client.password.get_token(params[:email], params[:password])
+      render json: { access_token: token.token }, status: 200
+    rescue OAuth2::Error => e
+      render json: "error", status: 401
+    end
   end
 
 end
