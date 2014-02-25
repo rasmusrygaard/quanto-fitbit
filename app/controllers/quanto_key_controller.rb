@@ -25,6 +25,8 @@ class QuantoKeyController < ApplicationController
       redirect_to '/auth/instagram'
     when :facebook
       redirect_to '/auth/facebook'
+    when :moves
+      redirect_to '/auth/moves'
     when :twitter
       redirect_to '/auth/twitter'
     when :manual

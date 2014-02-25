@@ -6,6 +6,7 @@ class Mapping < ActiveRecord::Base
   scope :fitbit, -> { where(provider: :fitbit).valid }
   scope :lastfm, -> { where(provider: :lastfm).valid }
   scope :manual, -> { where(provider: :manual).valid }
+  scope :moves, -> { where(provider: :moves).valid }
   scope :valid, -> { where(revoked: false) }
 
   belongs_to :quanto_key, class_name: 'OauthKey'
