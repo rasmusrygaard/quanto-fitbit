@@ -29,4 +29,9 @@ class ManualInputController < ApplicationController
     end
   end
 
+  def metrics
+    client = Quanto::Client.new(ENV["QUANTO_MANUAL_KEY"], ENV["QUANTO_MANUAL_SECRET"], access_token: params[:access_token])
+    respond_with client.metrics
+  end
+
 end

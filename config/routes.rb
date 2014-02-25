@@ -16,6 +16,8 @@ Fitbit::Application.routes.draw do
 
   # Plugin POST endpoints. Allow POST /manual for instance
   resources :manual_input, only: [:create]
+  get "/manual_input/metrics" => "manual_input#metrics"
+
   resources :fitbit, only: [:create]
 
   get '/ping' => 'ping#ping'
