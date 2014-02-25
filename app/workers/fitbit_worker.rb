@@ -2,7 +2,7 @@
 class FitbitWorker
   include Sidekiq::Worker
 
-  def perform(mapping_id)
+  def perform(mapping_id, fetch_all=false)
     mapping = Mapping.find(mapping_id)
     return if mapping.quanto_key.nil? || mapping.api_key.nil?
 
@@ -14,15 +14,28 @@ class FitbitWorker
     }
 
     fitbit_client = Fitgem::Client.new(fitbit_options)
-    range_options = { base_date: 1.days.ago, period: 'today' }
+    range_options = { base_date: fetch_all ? 2.years.ago : 1.days.ago, end_date: Date.today }
     steps = fitbit_client.data_by_time_range('/activities/log/steps', range_options)
     sleep = fitbit_client.data_by_time_range('/sleep/minutesAsleep', range_options)
 
     begin
       quanto_client = Quanto::Client.new(ENV["QUANTO_FITBIT_KEY"], ENV["QUANTO_FITBIT_SECRET"],
                                          access_token: mapping.quanto_key.token)
-      quanto_client.record_entry(steps["activities-log-steps"][0]['value'], :steps)
-      quanto_client.record_entry(sleep["sleep-minutesAsleep"][0]['value'], :sleep)
+
+      # Log steps data
+      if steps.present? && steps["activities-log-steps"].present?
+        steps["activities-log-steps"].select { |s| s['value'] != 0 }. each do |step_data|
+          quanto_client.record_entry(step_data['value'], :steps, date: step_data['dateTime'])
+        end
+      end
+
+      # Log sleep data
+      if sleep.present? && sleep["sleep-minutesAsleep"].present?
+        sleep["sleep-minutesAsleep"].select { |s| s['value'] != 0 }.each do |sleep_data|
+          quanto_client.record_entry(sleep_data['value'], :sleep, date: sleep_data['dateTime'])
+        end
+      end
+
     rescue OAuth2::Error => e
       NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'fitbit')
       maping.invalidate!

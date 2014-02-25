@@ -21,6 +21,9 @@ class Mapping < ActiveRecord::Base
     mapping.api_key = api_key
     mapping.provider = api_key.provider
     mapping.save!
+
+    fill_data(mapping)
+
     session.delete(:quanto_key_id)
     mapping.quanto_key
   end
@@ -32,6 +35,21 @@ class Mapping < ActiveRecord::Base
 
   def invalid?
     self.revoked
+  end
+
+  def self.fill_data(mapping)
+    case mapping.provider
+    when 'facebook'
+      FacebookWorker.perform_async(mapping.id)
+    when 'fitbit'
+      FitbitWorker.perform_async(mapping.id, true)
+    when 'instagram'
+      InstagramWorker.perform_async(mapping.id)
+    when 'lastfm'
+      LastfmWorker.perform_async(mapping.id)
+    when 'twitter'
+      TwitterWorker.perform_async(mapping.id)
+    end
   end
 
 end
