@@ -3,7 +3,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :lastfm, ENV["LASTFM_KEY"], ENV["LASTFM_SECRET"]
   provider :instagram, ENV["INSTAGRAM_KEY"], ENV["INSTAGRAM_SECRET"]
   provider :facebook, ENV["FACEBOOK_KEY"], ENV["FACEBOOK_SECRET"]
-  provider :moves, ENV["MOVES_KEY"], ENV["MOVES_SECRET"]
+  provider :moves, ENV["MOVES_KEY"], ENV["MOVES_SECRET"],
+         { :scope => 'activity, location'}
   provider :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"]
 
   # Register all keys for quanto
