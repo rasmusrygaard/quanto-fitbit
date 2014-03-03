@@ -90,6 +90,8 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (4.7.5)
+    moves (0.1.0)
+      rest-client
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
@@ -115,6 +117,10 @@ GEM
     omniauth-lastfm (0.0.5)
       omniauth-oauth (~> 1.0)
       rest-client (~> 1.6.6)
+    omniauth-moves (0.0.1)
+      multi_json (~> 1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -238,11 +244,13 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   koala (~> 1.9.0)
   lastfm (~> 1.23.0)
+  moves (~> 0.1.0)
   newrelic_rpm
   omniauth-facebook (~> 1.6.0)
   omniauth-fitbit
   omniauth-instagram (~> 1.0.1)
   omniauth-lastfm (~> 0.0.5)
+  omniauth-moves (~> 0.0.1)
   omniauth-quanto (~> 0.1.2)
   omniauth-twitter (~> 1.0.1)
   pg

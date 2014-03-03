@@ -58,3 +58,5 @@ gem 'newrelic_rpm'
 gem 'koala', '~> 1.9.0'
 
 gem 'twitter', '~> 5.5.1'
+
+gem 'moves', '~> 0.1.0'
