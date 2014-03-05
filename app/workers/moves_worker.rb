@@ -41,6 +41,8 @@ class MovesWorker
     quanto_client = Quanto::Client.new(ENV["QUANTO_MOVES_KEY"], ENV["QUANTO_MOVES_SECRET"],
                                 access_token: quanto_key.token)
 
+    puts client.daily_summary(date.to_s)
+
     activities = client.daily_summary(date.to_s)[0]["summary"]
     
     if activities.nil?
