@@ -67,9 +67,7 @@ class MovesWorker
   end
 
   def self.pull_backlog
-    for date in Date.parse("2014-02-20").upto(Date.today)
-      Mapping.moves.find_each { |mapping| MovesWorker.pull_from_date(mapping.id, date) }
-    end
+    Date.parse("2014-02-20").upto(Date.today) { |date| Mapping.moves.find_each { |mapping| MovesWorker.pull_from_date(mapping.id, date) } }
   end
 
 end
