@@ -57,14 +57,12 @@ class MovesWorker
     end
 
     if defined?(walking) and !walking.nil?
-      puts "recorded walking"
-      quanto_client.record_entry(walking["duration"]/60.0, :"Time Walking");
-      quanto_client.record_entry(walking["calories"], :"Calories Burned Walking");
+      quanto_client.record_entry(walking["duration"]/60.0, :"Time Walking", { :date => date.to_s });
+      quanto_client.record_entry(walking["calories"], :"Calories Burned Walking", { :date => date.to_s });
     end
     if defined?(cycling) and !cycling.nil?
-      puts "recorded cycling"
-      quanto_client.record_entry(cycling["duration"]/60.0, :"Time Cycling");
-      quanto_client.record_entry(cycling["calories"], :"Calories Burned Cycling");
+      quanto_client.record_entry(cycling["duration"]/60.0, :"Time Cycling", { :date => date.to_s });
+      quanto_client.record_entry(cycling["calories"], :"Calories Burned Cycling", { :date => date.to_s });
     end
   end
 
