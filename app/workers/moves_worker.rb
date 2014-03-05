@@ -41,8 +41,6 @@ class MovesWorker
     quanto_client = Quanto::Client.new(ENV["QUANTO_MOVES_KEY"], ENV["QUANTO_MOVES_SECRET"],
                                 access_token: quanto_key.token)
 
-    puts client.daily_summary(date.to_s)
-
     activities = client.daily_summary(date.to_s)[0]["summary"]
     
     if activities.nil?
@@ -59,10 +57,12 @@ class MovesWorker
     end
 
     if defined?(walking) and !walking.nil?
+      puts "recorded walking"
       quanto_client.record_entry(walking["duration"]/60.0, :"Time Walking");
       quanto_client.record_entry(walking["calories"], :"Calories Burned Walking");
     end
     if defined?(cycling) and !cycling.nil?
+      puts "recorded cycling"
       quanto_client.record_entry(cycling["duration"]/60.0, :"Time Cycling");
       quanto_client.record_entry(cycling["calories"], :"Calories Burned Cycling");
     end
