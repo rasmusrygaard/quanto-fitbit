@@ -42,6 +42,10 @@ class MovesWorker
                                 access_token: quanto_key.token)
 
     activities = client.daily_summary(date.to_s)[0]["summary"]
+    
+    if activities.nil?
+      return
+    end
 
     for activity in activities
       if activity["activity"] == "walking"
