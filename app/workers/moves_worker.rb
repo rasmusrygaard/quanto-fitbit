@@ -32,7 +32,7 @@ class MovesWorker
   end
 
 
-  def pull_from_date(mapping_id, date)
+  def self.pull_from_date(mapping_id, date)
     mapping = Mapping.find(mapping_id)
  
     client = Moves::Client.new(mapping.api_key.token)
