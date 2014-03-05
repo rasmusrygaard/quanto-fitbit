@@ -21,11 +21,11 @@ class MovesWorker
       end
     end
 
-    if defined?(walking)
+    if defined?(walking) and !walking.nil?
       quanto_client.record_entry(walking["duration"]/60.0, :"Time Walking");
       quanto_client.record_entry(walking["calories"], :"Calories Burned Walking");
     end
-    if defined?(cycling)
+    if defined?(cycling) and !cycling.nil?
       quanto_client.record_entry(cycling["duration"]/60.0, :"Time Cycling");
       quanto_client.record_entry(cycling["calories"], :"Calories Burned Cycling");
     end
@@ -52,11 +52,11 @@ class MovesWorker
       end
     end
 
-    if defined?(walking)
+    if defined?(walking) and !walking.nil?
       quanto_client.record_entry(walking["duration"]/60.0, :"Time Walking");
       quanto_client.record_entry(walking["calories"], :"Calories Burned Walking");
     end
-    if defined?(cycling)
+    if defined?(cycling) and !cycling.nil?
       quanto_client.record_entry(cycling["duration"]/60.0, :"Time Cycling");
       quanto_client.record_entry(cycling["calories"], :"Calories Burned Cycling");
     end
