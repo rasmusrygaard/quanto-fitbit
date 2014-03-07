@@ -25,6 +25,12 @@ class TwitterWorker
     quanto_client = Quanto::Client.new(ENV["QUANTO_TWITTER_KEY"], ENV["QUANTO_TWITTER_SECRET"],
                                 access_token: quanto_key.token)
     quanto_client.record_entry(count, :tweets)
+
+
+    rescue OAuth2::Error => e
+      NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'twitter')
+      mapping.invalidate!
+    end
   end
 
   def self.record_all

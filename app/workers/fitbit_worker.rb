@@ -38,7 +38,7 @@ class FitbitWorker
 
     rescue OAuth2::Error => e
       NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'fitbit')
-      maping.invalidate!
+      mapping.invalidate!
     end
   end
 

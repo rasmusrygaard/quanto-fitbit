@@ -11,6 +11,12 @@ class FacebookWorker
     quanto_client = Quanto::Client.new(ENV["QUANTO_FACEBOOK_KEY"], ENV["QUANTO_FACEBOOK_SECRET"],
                                 access_token: quanto_key.token)
     quanto_client.record_entry(friends.count, :friends)
+
+
+    rescue OAuth2::Error => e
+      NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'facebook')
+      mapping.invalidate!
+    end
   end
 
   def self.record_all

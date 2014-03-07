@@ -22,7 +22,7 @@ class InstagramWorker
     rescue OAuth2::Error => e
       # This is most likely happening because of invalid Quanto credentials. In that case, mark
       # the mapping as invalid and move on.
-      maping.invalidate!
+      mapping.invalidate!
       NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'instagram')
     end
 

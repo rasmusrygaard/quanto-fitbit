@@ -19,7 +19,7 @@ class LastfmWorker
       quanto_client.record_entry(track_count, :tracks)
     rescue OAuth2::Error => e
       NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'lastfm')
-      maping.invalidate!
+      mapping.invalidate!
     end
   end
 

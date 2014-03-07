@@ -29,6 +29,12 @@ class MovesWorker
       quanto_client.record_entry(cycling["duration"]/60.0, :"Time Cycling");
       quanto_client.record_entry(cycling["calories"], :"Calories Burned Cycling");
     end
+
+
+    rescue OAuth2::Error => e
+      NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'moves')
+      mapping.invalidate!
+    end
   end
 
   def self.record_all
