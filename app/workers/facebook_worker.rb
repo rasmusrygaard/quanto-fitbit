@@ -8,9 +8,11 @@ class FacebookWorker
     friends = graph.get_connections("me", "friends")
 	
     quanto_key = mapping.quanto_key
-    quanto_client = Quanto::Client.new(ENV["QUANTO_FACEBOOK_KEY"], ENV["QUANTO_FACEBOOK_SECRET"],
+
+    begin
+      quanto_client = Quanto::Client.new(ENV["QUANTO_FACEBOOK_KEY"], ENV["QUANTO_FACEBOOK_SECRET"],
                                 access_token: quanto_key.token)
-    quanto_client.record_entry(friends.count, :friends)
+      quanto_client.record_entry(friends.count, :friends)
 
 
     rescue OAuth2::Error => e
