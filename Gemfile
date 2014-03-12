@@ -49,11 +49,11 @@ gem 'lastfm', '~> 1.23.0'
 
 gem 'instagram', '~> 0.10.0'
 
-gem 'quanto-ruby', '~> 0.0.10'
+gem 'quanto-ruby', '~> 0.0.12'
 
 gem 'whenever', :require => false
 
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '~> 3.7.3.204'
 
 gem 'koala', '~> 1.9.0'
 
