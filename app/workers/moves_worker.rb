@@ -3,15 +3,16 @@ class MovesWorker
 
   def perform(mapping_id)
     mapping = Mapping.find(mapping_id)
- 
+
     client = Moves::Client.new(mapping.api_key.token)
-	
+
     quanto_key = mapping.quanto_key
     begin
       quanto_client = Quanto::Client.new(ENV["QUANTO_MOVES_KEY"], ENV["QUANTO_MOVES_SECRET"],
                                 access_token: quanto_key.token)
 
       activities = client.daily_summary[0]["summary"]
+      return if activities.nil?
 
       for activity in activities
         if activity["activity"] == "walking"
