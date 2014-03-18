@@ -14,7 +14,7 @@ class LastfmKeyController < ApplicationController
 
     client = Quanto::Client.new(ENV["QUANTO_LASTFM_KEY"], ENV["QUANTO_LASTFM_SECRET"],
                                 access_token: quanto_key.token)
-    redirect_to client.plugin_url
+    redirect_to client.activate_plugin
   end
 
 end

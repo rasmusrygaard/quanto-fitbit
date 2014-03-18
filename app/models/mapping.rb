@@ -49,6 +49,8 @@ class Mapping < ActiveRecord::Base
       LastfmWorker.perform_async(mapping.id)
     when 'twitter'
       TwitterWorker.perform_async(mapping.id)
+    when 'moves'
+      MovesWorker.perform_async(mapping.id)
     end
   end
 
