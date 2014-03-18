@@ -41,8 +41,13 @@ The following gems and tools make the Quanto plugins possible:
 - Unicorn (production-grade webserver)
 - Redis (key-value store, used in all background jobs)
 - Sidekiq (ruby gem for managing background jobs)
-- `omniauth` (framework for easy OAuth integration with 3rd party APIs and of course Quanto)
-- `fitgem`, `lastfm`, `koala`, `twitter`, `moves`, `instagram` (3rd party API gems)
+- [`omniauth`](https://github.com/intridea/omniauth) (framework for easy OAuth integration with 3rd party APIs and of course Quanto)
+- [`fitgem`](https://github.com/whazzmaster/fitgem),
+  [`lastfm`](https://github.com/youpy/ruby-lastfm),
+  [`koala`](https://github.com/arsduo/koala),
+  [`twitter`](https://github.com/sferik/twitter),
+  [`moves`](https://github.com/ankane/moves),
+  [`instagram`] (https://github.com/Instagram/instagram-ruby-gem)(3rd party API gems)
 
 ## Whirlwind Tour
 
@@ -107,7 +112,7 @@ The callback for each provider goes to a `KeyController` like `FacebookKeyContro
 When accepting the callback, the controller does the following:
 
 1. Create an `OauthKey` with the 3rd party credentials.
-2. Calls `Mapping.create_mapping_for_key` to map the new key to the Quanto key stored in step 3 in the previous section.
+2. Calls [`Mapping.create_mapping_for_key`](https://github.com/rasmusrygaard/quanto-plugins/blob/master/app/models/mapping.rb#L19) to map the new key to the Quanto key stored in step 3 in the previous section.
     This call also requests 3rd party data for the given provider asynchronously so the plugin immediately has data after being activated.
 3. Creates a Quanto::Client (a Quanto API client) and activates the plugin.
     Activating the plugin simply tells Quanto that the plugin got all credentials successfully and is ready to send data.
@@ -121,7 +126,7 @@ To keep everything speedy, the plugin server collects and sends data asynchronou
 The workers are all in `app/workers`.
 Each worker is required to implement two methods:
 
-**`#perform(mapping_id)`**
+**[`#perform(mapping_id)`](https://github.com/rasmusrygaard/quanto-plugins/blob/master/app/workers/instagram_worker.rb#L4)**
 
 This gets an identifier for a `Mapping`, looks up both Quanto and 3rd party credentials.
 For example, here is an annotated `InstragramWorker#perform(mapping_id)` method:
@@ -166,7 +171,7 @@ rescue OAuth2::Error => e
 end
 ```
 
-**`.perform_all()`**
+**[`.perform_all()`](https://github.com/rasmusrygaard/quanto-plugins/blob/master/app/workers/instagram_worker.rb#L30)**
 
 `perform_all` simply executes `perform` asynchronously for every `Mapping` for the given API.
 
