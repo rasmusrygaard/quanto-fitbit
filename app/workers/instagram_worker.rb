@@ -2,7 +2,6 @@ class InstagramWorker
   include Sidekiq::Worker
 
   def perform(mapping_id)
-    puts "KEY: #{ENV["QUANTO_INSTAGRAM_KEY"]}, Secret: #{ENV["QUANTO_INSTAGRAM_SECRET"]}"
     mapping = Mapping.find(mapping_id)
     return if mapping.quanto_key.nil? || mapping.api_key.nil?
 

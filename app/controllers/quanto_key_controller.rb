@@ -5,13 +5,12 @@ class QuantoKeyController < ApplicationController
   # /auth/quanto_fitbit/callback. We can use this string to detect which plugin was authorized.
   def create
     auth = request.env["omniauth.auth"]
-    key = OauthKey.create({
+    key = OauthKey.create!({
       provider: auth.provider,
       uid: auth.uid,
       token: auth.credentials.token,
       plugin: params[:provider],
     })
-    key.save!
 
     mapping = Mapping.create!(quanto_key: key)
     session[:quanto_key_id] = key.id
