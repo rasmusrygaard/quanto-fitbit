@@ -1,14 +1,13 @@
 class FacebookKeyController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
-    key = OauthKey.create({
+    key = OauthKey.create!({
       provider: auth.provider,
       uid: auth.uid,
       token: auth.credentials.token,
       token_secret: auth.credentials.secret,
       plugin: 'facebook',
     })
-    key.save!
 
     quanto_key = Mapping.create_mapping_for_key(key, session)
 

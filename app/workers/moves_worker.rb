@@ -16,6 +16,7 @@ class MovesWorker
       activities.each do |activity_summary|
 
         opt = { date: Time.zone.parse(activity_summary['date']) }
+        next if activity_summary['summary'].nil?
         activity_summary['summary'].each do |summary|
           calories = summary['calories']
           distance = summary['distance']
