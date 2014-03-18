@@ -50,7 +50,7 @@ class Mapping < ActiveRecord::Base
     when 'twitter'
       TwitterWorker.perform_async(mapping.id)
     when 'moves'
-      MovesWorker.perform_async(mapping.id)
+      MovesWorker.perform_async(mapping.id, true)
     end
   end
 
