@@ -132,14 +132,15 @@ This gets an identifier for a `Mapping`, looks up both Quanto and 3rd party cred
 For example, here is an annotated `InstragramWorker#perform(mapping_id)` method:
 
 First, we find the mapping and abort if we are missing either set of credentials.
-```
+
+```ruby
 mapping = Mapping.find(mapping_id)
 return if mapping.quanto_key.nil? || mapping.api_key.nil?
 ```
 
 Then, we create clients for both Quanto and Instagram.
 
-```
+```ruby
 client = Instagram.client(access_token: mapping.api_key.token)
 quanto_key = mapping.quanto_key
 
@@ -151,7 +152,7 @@ begin
 We then get data from Instagram by calling the `.user` method, which gives us a quick summary of the user's data.
 This data is then sent to Quanto by calling `record_entry` passing first the value to record and second which metric the value belongs to.
 
-```
+```ruby
   user = client.user
   quanto_client.record_entry(user.counts.media, :photos)
   quanto_client.record_entry(user.counts.followed_by, :followers)
@@ -162,7 +163,7 @@ Finally, Quanto users can of course disable plugins too.
 In that case, our access token gets revoked, and we get an `Oauth2::Error` whenever we attempt to send credentials with the revoked token.
 To avoid piling up invalid credentials, we mark the `Mapping` as invalid and notify NewRelic of the error to keep some stats.
 
-```
+```ruby
 rescue OAuth2::Error => e
   # This is most likely happening because of invalid Quanto credentials. In that case, mark
   # the mapping as invalid and move on.
