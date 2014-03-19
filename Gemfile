@@ -25,7 +25,7 @@ end
 gem 'fitgem', '~> 0.9.0'
 gem 'omniauth-fitbit'
 
-gem 'omniauth-quanto', '~> 0.1.2'
+gem 'omniauth-quanto', '~> 0.1.3'
 gem 'omniauth-lastfm', '~> 0.0.5'
 gem 'omniauth-instagram', '~> 1.0.1'
 gem 'omniauth-facebook', '~> 1.6.0'
@@ -36,7 +36,7 @@ gem 'lastfm', '~> 1.23.0'
 
 gem 'instagram', '~> 0.10.0'
 
-gem 'quanto-ruby', '~> 0.0.15'
+gem 'quanto-ruby', '~> 0.0.16'
 
 gem 'whenever', :require => false
 
