@@ -18,6 +18,8 @@ class FacebookWorker
       end
     end
 
+    puts Date.parse(statuses[0]["updated_time"])
+    puts today
     cur_page.each do |status|
       if Date.parse(status["updated_time"]) === today
         count += 1
