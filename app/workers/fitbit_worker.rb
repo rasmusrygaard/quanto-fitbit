@@ -14,7 +14,9 @@ class FitbitWorker
     }
 
     fitbit_client = Fitgem::Client.new(fitbit_options)
-    range_options = { base_date: fetch_all ? 2.years.ago : 1.days.ago, end_date: Date.today }
+    today = Time.zone.now.to_date
+    start_date = fetch_all ? today - 2.years : today
+    range_options = { base_date: start_date, end_date: today }
     steps = fitbit_client.data_by_time_range('/activities/log/steps', range_options)
     sleep = fitbit_client.data_by_time_range('/sleep/minutesAsleep', range_options)
 

@@ -16,6 +16,6 @@ class FitbitKeyController < ApplicationController
 
     client = Quanto::Client.new(ENV["QUANTO_FITBIT_KEY"], ENV["QUANTO_FITBIT_SECRET"],
                                 access_token: quanto_key.token)
-    redirect_to client.plugin_url
+    redirect_to client.activate_plugin
   end
 end
