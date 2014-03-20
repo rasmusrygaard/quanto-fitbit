@@ -12,7 +12,7 @@ class FacebookWorker
     cur_page = statuses
     count = 0
     if !statuses.last.nil?
-      while Date.parse(statuses.last["updated_time")] === today && !cur_page.next_page.nil?
+      while Date.parse(statuses.last["updated_time"]) === today && !cur_page.next_page.nil?
         cur_page = cur_page.next_page
         count += 25
       end
