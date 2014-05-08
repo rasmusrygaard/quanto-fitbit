@@ -12,6 +12,8 @@ Fitbit::Application.routes.draw do
   get "/auth/moves/callback" => "moves_key#create"
   get "/auth/twitter/callback" => "twitter_key#create"
 
+  resources :instagram_subscription, only: [:create, :index]
+
   post "/auth/manual" => "manual_input#authenticate"
 
   # Plugin POST endpoints. Allow POST /manual for instance
