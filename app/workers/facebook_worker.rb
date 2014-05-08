@@ -3,10 +3,16 @@ class FacebookWorker
 
   def perform(mapping_id)
     mapping = Mapping.find(mapping_id)
- 
-    graph = Koala::Facebook::API.new(mapping.api_key.token)
-    friends = graph.get_connections("me", "friends")
-    statuses = graph.get_connections("me", "statuses")
+
+    begin
+      graph = Koala::Facebook::API.new(mapping.api_key.token)
+      friends = graph.get_connections("me", "friends")
+      statuses = graph.get_connections("me", "statuses")
+    rescue Koala::Facebook::AuthenticationError => e
+      NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'koala_facebook')
+      mapping.invalidate!
+      return
+    end
 
     today = Time.zone.now.to_date
     cur_page = statuses

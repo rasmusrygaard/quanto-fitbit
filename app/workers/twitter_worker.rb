@@ -3,7 +3,7 @@ class TwitterWorker
 
   def perform(mapping_id)
     mapping = Mapping.find(mapping_id)
- 
+
     client = Twitter::REST::Client.new do |config|
       config.consumer_key = ENV["TWITTER_KEY"]
       config.consumer_secret = ENV["TWITTER_SECRET"]
@@ -13,8 +13,14 @@ class TwitterWorker
 
     count = 0
 
-    tweets = client.user_timeline(client.verify_credentials[:screen_name])
-    
+    begin
+      tweets = client.user_timeline(client.verify_credentials[:screen_name])
+    rescue Twitter::Error::Unauthorized => e
+      NewRelic::Agent.agent.error_collector.notice_error(e, metric: 'gem_twitter')
+      mapping.invalidate!
+      return
+    end
+
     tweets.each do |tweet|
       if Date.parse(tweet.created_at.to_s) === Date.today
         count+=1
