@@ -9,6 +9,7 @@ class InstagramSubscriptionController < ApplicationController
       render json: params['hub.challenge'], status: 200
     else
       render json: "error", status: 400
+    end
   end
 
 end
