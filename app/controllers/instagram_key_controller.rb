@@ -10,6 +10,9 @@ class InstagramKeyController < ApplicationController
     })
     key.save!
 
+    client = Instagram.client(access_token: auth.credentials.token)
+    client.create_subscription(:user, 'http://quanto-plugins.herokuapp.com/instagram_subscription')
+
     quanto_key = Mapping.create_mapping_for_key(key, session)
 
     client = Quanto::Client.new(ENV["QUANTO_INSTAGRAM_KEY"], ENV["QUANTO_INSTAGRAM_SECRET"],

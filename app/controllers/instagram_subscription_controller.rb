@@ -1,14 +1,14 @@
 class InstagramSubscriptionController < ApplicationController
 
   def create
+    render text: "not authorized", status: 401 unless Instagram.validate_update(request.body, headers)
+
     Instagram.process_subscription(params[:body]) do |handler|
 
       handler.on_user_changed do |user_id, data|
         key = OauthKey.instagram.where(uid: user_id.to_s)
-        user = User.by_instagram_id(user_id)
-        @client = Instagram.client(:access_token => _access_token_for_user(user))
-        latest_media = @client.user_recent_media[0]
-        user.media.create_with_hash(latest_media)
+        mapping = Mapping.where(api_key: key).first
+        InstagramWorker.perform_async(mapping.id)
       end
 
     end
