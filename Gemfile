@@ -7,8 +7,8 @@ gem 'rails', '4.0.0'
 gem 'pg'
 
 # Use unicorn and Sidekiq for concurrency and background jobs.
-gem 'unicorn'
-gem 'sidekiq'
+gem 'unicorn', '~> 4.8.3'
+gem 'sidekiq', '~> 3.0.2'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
