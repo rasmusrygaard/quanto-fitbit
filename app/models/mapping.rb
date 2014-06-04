@@ -42,6 +42,17 @@ class Mapping < ActiveRecord::Base
     when 'facebook'
       FacebookWorker.perform_async(mapping.id)
     when 'fitbit'
+      # Set up a Fitbit subscription.
+      fitbit_options = {
+        consumer_key: ENV["FITBIT_KEY"],
+        consumer_secret: ENV["FITBIT_SECRET"],
+        token: mapping.api_key.token,
+        secret: mapping.api_key.token_secret,
+      }
+
+      fitbit_client = Fitgem::Client.new(fitbit_options)
+      fitbit_client.create_subscription(type: :activities, subscription_id: mapping.id)
+
       FitbitWorker.perform_async(mapping.id, true)
     when 'instagram'
       InstagramWorker.perform_async(mapping.id)

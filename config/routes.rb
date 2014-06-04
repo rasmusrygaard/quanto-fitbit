@@ -13,6 +13,7 @@ Fitbit::Application.routes.draw do
   get "/auth/twitter/callback" => "twitter_key#create"
 
   resources :instagram_subscription, only: [:create, :index]
+  resources :fitbit_subscription, only: [:create]
 
   post "/auth/manual" => "manual_input#authenticate"
 
