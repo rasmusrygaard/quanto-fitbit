@@ -17,7 +17,7 @@ class FitbitSubscriptionController < ApplicationController
     updates.each do |update|
       date = Date.parse(update[:date])
       if to_update.include?(update[:subscriptionId])
-        dates = update[:subscriptionId]
+        dates = to_update[update[:subscriptionId]]
         dates[:start_date] = [dates[:start_date], date].min
         dates[:end_date]   = [dates[:end_date], date].max
       else
