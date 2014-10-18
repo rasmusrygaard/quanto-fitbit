@@ -42,7 +42,7 @@ GEM
       multipart-post (~> 1.2.0)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
-    fitgem (0.9.0)
+    fitgem (0.10.0)
       oauth
     hashie (2.0.5)
     hike (1.2.3)
@@ -218,7 +218,7 @@ PLATFORMS
 
 DEPENDENCIES
   faraday (~> 0.8.9)
-  fitgem (~> 0.9.0)
+  fitgem (~> 0.10.0)
   instagram (~> 1.0.0)
   jbuilder (~> 1.2)
   koala (~> 1.9.0)
