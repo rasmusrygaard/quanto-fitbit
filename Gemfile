@@ -36,7 +36,7 @@ gem 'lastfm', '~> 1.23.0'
 
 gem 'instagram', '~> 1.0.0'
 
-gem 'quanto-ruby', '~> 0.0.16'
+gem 'quanto-ruby', '~> 0.0.17'
 
 gem 'whenever', :require => false
 
