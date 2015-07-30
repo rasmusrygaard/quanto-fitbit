@@ -2,6 +2,8 @@ class MovesWorker
   include Sidekiq::Worker
 
   def perform(mapping_id, fetch_all=false)
+    # Having credential problems, just no-op for now.
+    return
     mapping = Mapping.find(mapping_id)
 
     client = Moves::Client.new(mapping.api_key.token)
