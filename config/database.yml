@@ -18,6 +18,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: fitbit_development
+  template: template0
   pool: 5
   username: fitbit
   password:
@@ -47,6 +48,7 @@ test:
   adapter: postgresql
   encoding: unicode
   database: fitbit_test
+  template: template0
   pool: 5
   username: fitbit
   password:
@@ -55,6 +57,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: fitbit_production
+  template: template0
   pool: 5
   username: fitbit
   password:

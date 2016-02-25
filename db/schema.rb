@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140211215110) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "mappings", force: true do |t|
     t.integer  "quanto_key_id"
     t.integer  "api_key_id"
